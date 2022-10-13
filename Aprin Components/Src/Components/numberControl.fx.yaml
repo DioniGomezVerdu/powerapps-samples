@@ -1,0 +1,108 @@
+numberControl As CanvasComponent:
+    ButtonColor: =RGBA(0, 0, 0, 1)
+    ButtonTextColor: =RGBA(0, 0, 0, 1)
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =640
+    Increments: =100
+    Max: =100
+    Min: =100
+    NumberOutput: =100
+    StartNumber: =100
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    tbNumber As text:
+        Align: =Align.Center
+        BorderColor: =
+        BorderThickness: =1
+        Default: |-
+            =If(IsBlank(numberControl.NumberOutput),
+            Value(numberControl.StartNumber),
+            numberControl.NumberOutput) 
+        DisabledColor: =
+        Format: =TextFormat.Number
+        Height: =70
+        HoverBorderColor: =RGBA(0, 0, 0, 1)
+        HoverColor: =
+        HoverFill: =RGBA(0, 0, 0, 0)
+        PressedBorderColor: =
+        PressedColor: =
+        PressedFill: =
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =40
+        Width: =111
+        X: =153
+        Y: =125
+        ZIndex: =1
+
+    btnDown As button:
+        AutoDisableOnSelect: =false
+        BorderColor: =
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =70
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =
+        OnSelect: |-
+            =If(
+                (numberControl.NumberOutput - Value(numberControl.Increments)) > Value(numberControl.Max),
+                Set(
+                    varNumber,
+                    Value(tbNumber.Text)),
+                    Set(varNumber,Value((tbNumber.Text) - Value(numberControl.Increments)))) 
+        PressedBorderColor: =
+        PressedColor: =RGBA(0, 0, 0, 1)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        RadiusBottomLeft: |
+            =15
+        RadiusBottomRight: =0
+        RadiusTopLeft: =15
+        RadiusTopRight: =0
+        Size: =40
+        Text: ="-"
+        Width: =100
+        X: =53
+        Y: =125
+        ZIndex: =2
+
+    btnUp As button:
+        AutoDisableOnSelect: =false
+        BorderColor: =
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledFill: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =70
+        HoverBorderColor: =RGBA(0, 0, 0, 1)
+        HoverColor: =
+        HoverFill: =RGBA(0, 0, 0, 0)
+        OnSelect: |-
+            =If(
+                (numberControl.NumberOutput + Value(numberControl.Increments)) > Value(numberControl.Max),
+                Set(
+                    varNumber,
+                    Value(tbNumber.Text)),
+                    Set(varNumber,Value((tbNumber.Text) + Value(numberControl.Increments)))) 
+        PressedBorderColor: =
+        PressedColor: =
+        PressedFill: =
+        RadiusBottomLeft: =0
+        RadiusBottomRight: |+
+            =15
+            
+        RadiusTopLeft: =0
+        RadiusTopRight: |
+            =15
+        Size: =40
+        Text: ="+"
+        Width: =100
+        X: =264
+        Y: =125
+        ZIndex: =3
+
